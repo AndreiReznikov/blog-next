@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-
 export default function SinglePost({params}) {
   const [post, setPost] = useState(null);
 
