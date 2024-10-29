@@ -95,6 +95,10 @@ a {
   text-decoration: none;
 }
 
+h1 {
+  text-decoration: underline;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

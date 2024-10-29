@@ -7,7 +7,6 @@ export default async function PostsPage() {
   return (
     <div>
       <h1>All Blog Posts</h1>
-      <hr style={{ width: '220px' }} />
       <div style={{ paddingTop: '40px' }}>
         {posts.map(post => (
           <article key={post.id}>
