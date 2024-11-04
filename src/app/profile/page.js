@@ -1,6 +1,10 @@
+import { useSession } from 'next-auth/react';
 import styles from './page.module.css'
+import Link from 'next/link';
 
 export default async function ProfilePage() {
+  // const { data } = useSession();
+
   return (
     <div className={styles.container}>
       <h1>Profile</h1>
@@ -12,7 +16,8 @@ export default async function ProfilePage() {
             <input className={styles.input} type='password' placeholder='Password' required />
           </div>
           <div className={styles['button-wrapper']}>
-            <button className={styles.button} type='submit'>Sign in</button>
+            <Link href={"api/auth/signin"}>Sign in</Link>
+            {/* <button className={styles.button}>Sign in</button> */}
           </div>
         </form>
       </div>
