@@ -1,8 +1,11 @@
+'use client';
+
 import styles from './header.module.css';
 import Image from 'next/image';
 import image from '@/assets/logo/logo.png';
 import userIcon from '@/assets/icons/user-icon.svg';
 import Link from 'next/link';
+import { signIn } from 'next-auth/react';
 
 export default function Header() {
   return (
@@ -28,10 +31,10 @@ export default function Header() {
           </ul>
         </nav>
       </div>
-      <div className={styles['right-side-container']}>
-        <Link href='/profile'>
+      <div onClick={() => signIn()} className={styles['right-side-container']}>
+        {/* <Link href='/profile'> */}
           <Image src={userIcon} width='40' height='40' />
-        </Link>
+        {/* </Link> */}
       </div>
     </header>
   )

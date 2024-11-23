@@ -1,11 +1,12 @@
+'use client';
+
 import Link from 'next/link';
 import { posts } from '@/mock/mock';
+import { useSession } from 'next-auth/react';
 
-export default async function PostsPage() {
-  // const res = await fetch('http://localhost:3000/api/posts');
-  // const { posts } = await res.json();
-
-  // console.log(posts);
+export default function PostsPage() {
+  const { data } = useSession();
+  console.log(data);
 
   return (
     <div>
