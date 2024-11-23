@@ -1,8 +1,11 @@
 import Link from 'next/link';
+import { posts } from '@/mock/mock';
 
 export default async function PostsPage() {
-  const res = await fetch('http://localhost:3000/api/posts');
-  const { posts } = await res.json();
+  // const res = await fetch('http://localhost:3000/api/posts');
+  // const { posts } = await res.json();
+
+  // console.log(posts);
 
   return (
     <div>

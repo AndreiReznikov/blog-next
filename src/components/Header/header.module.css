@@ -1,7 +1,19 @@
 .header {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   min-height: 80px;
   padding: 20px 40px;
   border-bottom: 1px solid white;
+}
+
+.left-side-container {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+}
+
+.navbar-list {
+  display: flex;
+  gap: 25px;
+  list-style-type: none;
 }
