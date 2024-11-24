@@ -5,15 +5,17 @@ import Image from 'next/image';
 import image from '@/assets/logo/logo.png';
 import userIcon from '@/assets/icons/user-icon.svg';
 import Link from 'next/link';
-import { signIn } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 
 export default function Header() {
+  const session = useSession();
+  console.log(session);
   return (
     <header className={styles.header}>
       <div className={styles['left-side-container']}>
         <div className={styles['logo-container']}>
           <Link href='/'>
-            <Image src={image} width='100' height='44' />
+            <Image src={image} width='100' height='44' alt='Logo' />
           </Link>
         </div>
         <nav className={styles.navbar}>
@@ -31,10 +33,10 @@ export default function Header() {
           </ul>
         </nav>
       </div>
-      <div onClick={() => signIn()} className={styles['right-side-container']}>
-        {/* <Link href='/profile'> */}
-          <Image src={userIcon} width='40' height='40' />
-        {/* </Link> */}
+      <div className={styles['right-side-container']}>
+        <Link href='/profile'>
+          <Image src={userIcon} width='40' height='40' alt='Profile' />
+        </Link>
       </div>
     </header>
   )

@@ -1,7 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { BACKEND_URL } from "@/lib/Constants";
 import NextAuth from "next-auth";
-import { signIn } from "next-auth/react";
 
 export const authOptions = {
   providers: [
@@ -35,7 +34,6 @@ export const authOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-      console.log({ token, user });
       if (user) return { ...token, ...user };
 
       return token;

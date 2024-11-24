@@ -1,12 +1,10 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import styles from './page.module.css'
-import Link from 'next/link';
 import { useRef } from 'react';
 import { BACKEND_URL } from '@/lib/Constants';
 
-export default async function SignUpPage() {
+export default function SignUpPage() {
   // const { data } = useSession();
   const name = useRef('');
   const email = useRef('');
@@ -32,7 +30,6 @@ export default async function SignUpPage() {
 
     const response = await res.json();
     alert('User Registered!');
-    console.log({ response });
   };
 
   return (
@@ -46,7 +43,6 @@ export default async function SignUpPage() {
             <input onChange={(e) => password.current = e.target.value} className={styles.input} type='password' placeholder='Password' required />
           </div>
           <div className={styles['button-wrapper']}>
-            {/* <Link href={"api/auth/signin"}>Sign up</Link> */}
             <button onClick={register} className={styles.button}>Sign up</button>
           </div>
         </form>

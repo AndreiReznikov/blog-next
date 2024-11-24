@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { author } from '@/mock/mock';
 import styles from './page.module.css'
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../api/auth/[...nextauth]/route';
 
-export default async function PostsPage() {
-  // const res = await fetch('http://localhost:3000/api/posts');
-  // const { posts } = await res.json();
-
+export default async function Profile() {
+  const session = await getServerSession(authOptions);
+  console.log(session);
   const { name, email, aboutInfo, posts } = author[0];
 
   return (

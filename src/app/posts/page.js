@@ -1,13 +1,7 @@
-'use client';
-
 import Link from 'next/link';
 import { posts } from '@/mock/mock';
-import { useSession } from 'next-auth/react';
 
 export default function PostsPage() {
-  const { data } = useSession();
-  console.log(data);
-
   return (
     <div>
       <h1>All Blog Posts</h1>
