@@ -3,6 +3,7 @@
 import { signIn } from 'next-auth/react';
 import styles from './page.module.css'
 import { useRef } from 'react';
+import Link from 'next/link';
 
 export default async function LoginPage() {
   // const { data } = useSession();
@@ -30,6 +31,12 @@ export default async function LoginPage() {
           <div className={styles['button-wrapper']}>
             <button onClick={onSubmit} className={styles.button}>Sign in</button>
           </div>
+          <span className={styles.subtext}>
+            Don't have a Next Blog account?
+            <Link className={styles['signup-link']} href='/signup'>
+              Create an account
+            </Link>
+          </span>
         </div>
       </div>
     </div>

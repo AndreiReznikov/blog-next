@@ -17,3 +17,13 @@
   gap: 25px;
   list-style-type: none;
 }
+
+.right-side-container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.signout {
+  cursor: pointer;
+}

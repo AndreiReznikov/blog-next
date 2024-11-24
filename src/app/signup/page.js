@@ -3,6 +3,7 @@
 import styles from './page.module.css'
 import { useRef } from 'react';
 import { BACKEND_URL } from '@/lib/Constants';
+import Link from 'next/link';
 
 export default function SignUpPage() {
   // const { data } = useSession();
@@ -35,7 +36,7 @@ export default function SignUpPage() {
   return (
     <div className={styles.container}>
       <div className={styles['form-container']}>
-        <form method='post' className={styles.form}>
+        <div method='post' className={styles.form}>
           <h2>Sign up</h2>
           <div className={styles['inputs-wrapper']}>
             <input onChange={(e) => name.current = e.target.value} className={styles.input} placeholder='Name' required />
@@ -45,7 +46,13 @@ export default function SignUpPage() {
           <div className={styles['button-wrapper']}>
             <button onClick={register} className={styles.button}>Sign up</button>
           </div>
-        </form>
+          <span className={styles.subtext}>
+            Already have an account on the Next Blog?&nbsp;
+            <Link className={styles['signin-link']} href='/login'>
+              Sign in
+            </Link>
+          </span>
+        </div>
       </div>
     </div>
   );

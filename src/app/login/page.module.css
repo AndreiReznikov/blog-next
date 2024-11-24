@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   padding: 6rem;
-  min-height: 100vh;
 }
 
 .form-container {
@@ -49,4 +48,12 @@
   border: 1px solid white;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.subtext {
+  font-size: 14px;
+}
+
+.signup-link {
+  text-decoration: underline;
 }

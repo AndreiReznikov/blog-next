@@ -5,7 +5,8 @@ import Image from 'next/image';
 import image from '@/assets/logo/logo.png';
 import userIcon from '@/assets/icons/user-icon.svg';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
+import { redirect } from 'next/dist/server/api-utils';
 
 export default function Header() {
   const session = useSession();
@@ -37,6 +38,12 @@ export default function Header() {
         <Link href='/profile'>
           <Image src={userIcon} width='40' height='40' alt='Profile' />
         </Link>
+        {
+          session.status === 'authenticated' &&
+          <span className={styles.signout} onClick={() => signOut({ redirect: false })}>
+            Sign Out
+          </span>
+        }
       </div>
     </header>
   )
