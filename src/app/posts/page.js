@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { BACKEND_URL } from '@/lib/Constants';
 
 export default async function PostsPage() {
-  const res = await fetch(`${BACKEND_URL}/post`);
+  const res = await fetch(`${BACKEND_URL}/post`, { cache: 'no-cache' });
   const posts = await res.json();
 
   return (
@@ -14,7 +14,7 @@ export default async function PostsPage() {
             <Link href={`posts/${post.id}`}>
               <h2>{post.title}</h2>
             </Link>
-            <p style={{ paddingBottom: '30px'}}>{post.description}</p>
+            <p style={{ paddingBottom: '30px' }}>{post.description}</p>
           </article>
         ))}
       </div>
