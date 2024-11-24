@@ -23,9 +23,9 @@ export default function SinglePost({params}) {
       <div style={{ paddingTop: '50px' }}>
         <article>
           <h1 style={{ paddingBottom: '10px' }}>{post?.title}</h1>
-          {post?.tags.map((tag, index) => <span style={{ fontWeight: 'lighter' }} key={index}>{tag} | </span>)}
+          {/* {post?.tags.map((tag, index) => <span style={{ fontWeight: 'lighter' }} key={index}>{tag} | </span>)} */}
           <br/>
-          <p style={{ paddingTop: '10px' }}>{post?.body}</p>
+          <p style={{ paddingTop: '10px' }}>{post?.description}</p>
         </article>
       </div>
     </div>

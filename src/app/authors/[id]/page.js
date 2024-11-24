@@ -1,12 +1,14 @@
 import Link from 'next/link';
-import { author } from '@/mock/mock';
 import styles from './page.module.css'
+import { BACKEND_URL } from '@/lib/Constants';
 
-export default async function PostsPage() {
-  // const res = await fetch('http://localhost:3000/api/posts');
-  // const { posts } = await res.json();
+export default async function PostsPage({ params }) {
+  const res = await fetch(`${BACKEND_URL}/user/${params.id}`);
+  const author = await res.json();
 
-  const { name, email, aboutInfo, posts } = author[0];
+  console.log(author);
+
+  const { name, email, aboutInfo, posts } = author;
 
   return (
     <main className={styles.main}>
@@ -24,7 +26,7 @@ export default async function PostsPage() {
             <Link href={`posts/${post?.id}`}>
               <h3>{post?.title}</h3>
             </Link>
-            <p>{post?.body}</p>
+            <p>{post?.description}</p>
           </article>
         ))}
       </div>
