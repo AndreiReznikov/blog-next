@@ -6,7 +6,6 @@ import image from '@/assets/logo/logo.png';
 import userIcon from '@/assets/icons/user-icon.svg';
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
-import { redirect } from 'next/dist/server/api-utils';
 
 export default function Header() {
   const session = useSession();
