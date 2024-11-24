@@ -1,10 +1,20 @@
 import Link from 'next/link';
 import { BACKEND_URL } from '@/lib/Constants';
 import styles from './page.module.css'
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../api/auth/[...nextauth]/route';
 
 export default async function Authors() {
-  const res = await fetch(`${BACKEND_URL}/user`);
+  const session = await getServerSession(authOptions);
+
+  const res = await fetch(`${BACKEND_URL}/user`, {
+    cache: 'no-cache', headers: {
+      authorization: `Bearer ${session?.backendTokens?.accessToken}`
+    }
+  });
   const authors = await res.json();
+
+  if (!authors?.length) return <div>No authors</div>;
 
   return (
     <main className={styles.main}>

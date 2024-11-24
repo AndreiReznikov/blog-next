@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { author } from '@/mock/mock';
 import styles from './page.module.css'
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../api/auth/[...nextauth]/route';
