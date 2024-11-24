@@ -1,11 +1,10 @@
 'use client';
 
 import { BACKEND_URL } from '@/lib/Constants';
-import { useSession } from 'next-auth/react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
+import styles from './page.module.css'
 
-export default function AddPostPage({ params }) {
-  const session = useSession();
+export default function EditPostPage({ params }) {
   const [currentPost, setCurrentPost] = useState({
     title: '',
     description: '',
@@ -25,7 +24,7 @@ export default function AddPostPage({ params }) {
     fetchPost();
   }, [fetchPost]);
 
-  const addPost = async () => {
+  const editPost = async () => {
     const res = await fetch(`${BACKEND_URL}/post/${params.id}`, {
       method: 'POST',
       headers: {
@@ -50,23 +49,27 @@ export default function AddPostPage({ params }) {
   }, [setCurrentPost]);
 
   return (
-    <div>
+    <main className={styles.main}>
       <h1>Edit post</h1>
-      <div>
-        <input
-          name="title"
-          value={currentPost.title}
-          onChange={handleChange}
-          placeholder='Title'
-        />
-        <textarea
-          name="description"
-          value={currentPost.description}
-          onChange={handleChange}
-          placeholder='Description'
-        />
-        <button onClick={addPost}>Edit post</button>
+      <div className={styles.container}>
+        <form className={styles.form}>
+          <input
+            name="title"
+            value={currentPost.title}
+            className={styles.input}
+            onChange={handleChange}
+            placeholder='Title'
+          />
+          <textarea
+            name="description"
+            value={currentPost.description}
+            className={styles.textarea}
+            onChange={handleChange}
+            placeholder='Description'
+          />
+          <button className={styles.button} onClick={editPost}>Edit post</button>
+        </form>
       </div>
-    </div>
+    </main>
   );
 }
