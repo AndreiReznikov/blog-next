@@ -7,12 +7,25 @@ import { authOptions } from '../api/auth/[...nextauth]/route';
 export default async function Authors() {
   const session = await getServerSession(authOptions);
 
-  const res = await fetch(`${BACKEND_URL}/user`, {
-    cache: 'no-cache', headers: {
-      authorization: `Bearer ${session?.backendTokens?.accessToken}`
+  let authors = [];
+
+  try {
+    const res = await fetch(`${BACKEND_URL}/user`, {
+      cache: 'no-cache',
+      headers: {
+        authorization: `Bearer ${session?.backendTokens?.accessToken}`
+      }
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
     }
-  });
-  const authors = await res.json();
+
+    authors = await res.json();
+  } catch (error) {
+    console.error('Fetch error:', error);
+    authors = [];
+  }
 
   if (!authors?.length) return <div>No authors</div>;
 

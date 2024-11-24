@@ -5,8 +5,8 @@ import { authOptions } from '../api/auth/[...nextauth]/route';
 
 export default async function Profile() {
   const session = await getServerSession(authOptions);
-  console.log(session);
-  const { name, email, aboutInfo, posts } = session?.user;
+
+  const { name, email, aboutInfo, posts } = session?.user ?? {};
 
   return (
     <main className={styles.main}>
