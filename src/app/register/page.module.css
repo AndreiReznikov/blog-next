@@ -1,8 +1,11 @@
-.container {
+.main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6rem;
+  max-width: 1200px;
+  min-height: calc(100vh - 90px);
+  margin: 0 auto;
+  padding: 3rem;
 }
 
 .form-container {
@@ -54,6 +57,6 @@
   font-size: 14px;
 }
 
-.signin-link {
+.login-link {
   text-decoration: underline;
 }

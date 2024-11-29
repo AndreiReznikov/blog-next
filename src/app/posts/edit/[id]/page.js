@@ -50,25 +50,29 @@ export default function EditPostPage({ params }) {
 
   return (
     <main className={styles.main}>
-      <h1>Edit post</h1>
       <div className={styles.container}>
-        <form className={styles.form}>
-          <input
-            name="title"
-            value={currentPost.title}
-            className={styles.input}
-            onChange={handleChange}
-            placeholder='Title'
-          />
-          <textarea
-            name="description"
-            value={currentPost.description}
-            className={styles.textarea}
-            onChange={handleChange}
-            placeholder='Description'
-          />
-          <button className={styles.button} onClick={editPost}>Edit post</button>
-        </form>
+        <h1 className={styles.title}>Edit post</h1>
+        <div className={styles['form-container']}>
+          <form className={styles.form}>
+            <input
+              name="title"
+              value={currentPost.title}
+              className={styles.input}
+              onChange={handleChange}
+              placeholder='Title'
+            />
+            <textarea
+              name="description"
+              value={currentPost.description}
+              className={styles.textarea}
+              onChange={handleChange}
+              placeholder='Description'
+            />
+            <div className={styles['button-container']}>
+              <button className={styles.button} onClick={editPost}>Edit post</button>
+            </div>
+          </form>
+        </div>
       </div>
     </main>
   );

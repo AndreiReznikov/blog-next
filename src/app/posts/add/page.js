@@ -30,21 +30,25 @@ export default function AddPostPage() {
 
   return (
     <main className={styles.main}>
-      <h1>Add post</h1>
       <div className={styles.container}>
-        <form className={styles.form}>
-          <input
-            className={styles.input}
-            onChange={(e) => postData.current.title = e.target.value}
-            placeholder='Title'
-          />
-          <textarea
-            className={styles.textarea}
-            onChange={(e) => postData.current.description = e.target.value}
-            placeholder='Description'
-          />
-          <button className={styles.button} onClick={addPost}>Add post</button>
-        </form>
+        <h1 className={styles.title}>Add post</h1>
+        <div className={styles['form-container']}>
+          <form className={styles.form}>
+            <input
+              className={styles.input}
+              onChange={(e) => postData.current.title = e.target.value}
+              placeholder='Title'
+            />
+            <textarea
+              className={styles.textarea}
+              onChange={(e) => postData.current.description = e.target.value}
+              placeholder='Description'
+            />
+            <div className={styles['button-container']}>
+              <button className={styles.button} onClick={addPost}>Add post</button>
+            </div>
+          </form>
+        </div>
       </div>
     </main>
   );

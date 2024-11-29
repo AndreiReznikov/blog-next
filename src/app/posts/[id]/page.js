@@ -1,33 +1,20 @@
-'use client'
-
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { BACKEND_URL } from '@/lib/Constants';
+import styles from './page.module.css';
 
-export default function SinglePost({params}) {
-  const [post, setPost] = useState(null);
-
-  const fetchPost = async (id) => {
-    const res = await fetch(`http://localhost:3000/api/posts/${id}`);
-    const {post} = await res.json();
-
-    post && setPost(post);
-  }
-
-  useEffect(() => {
-    fetchPost(params.id);
-  }, [])
-
+export default async function SinglePost({ params }) {
+  const res = await fetch(`${BACKEND_URL}/post/${params.id}`);
+  const post = await res.json();
+  console.log(post);
   return (
-    <div style={{ paddingTop: '20px', paddingLeft: '20px' }}>
-      <Link href='/'>Back to home</Link>
-      <div style={{ paddingTop: '50px' }}>
-        <article>
-          <h1 style={{ paddingBottom: '10px' }}>{post?.title}</h1>
-          {/* {post?.tags.map((tag, index) => <span style={{ fontWeight: 'lighter' }} key={index}>{tag} | </span>)} */}
-          <br/>
-          <p style={{ paddingTop: '10px' }}>{post?.description}</p>
+    <main className={styles.main}>
+      <div className={styles.container}>
+        <Link href='/posts'>&#8592; Back to all posts</Link>
+        <article className={styles.article}>
+          <h1>{post?.title}</h1>
+          <p>{post?.description}</p>
         </article>
       </div>
-    </div>
+    </main>
   )
 }

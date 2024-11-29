@@ -21,7 +21,7 @@ export default function Header() {
         <nav className={styles.navbar}>
           <ul className={styles['navbar-list']}>
             <li className={styles['navbar-list-item']}>
-              <Link href='/'>
+              <Link href='/posts'>
                 All posts
               </Link>
             </li>

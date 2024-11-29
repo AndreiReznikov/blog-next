@@ -5,8 +5,7 @@ import { useRef } from 'react';
 import { BACKEND_URL } from '@/lib/Constants';
 import Link from 'next/link';
 
-export default function SignUpPage() {
-  // const { data } = useSession();
+export default function RegisterPage() {
   const name = useRef('');
   const email = useRef('');
   const password = useRef('');
@@ -34,7 +33,7 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className={styles.container}>
+    <main className={styles.main}>
       <div className={styles['form-container']}>
         <div method='post' className={styles.form}>
           <h2>Sign up</h2>
@@ -48,12 +47,12 @@ export default function SignUpPage() {
           </div>
           <span className={styles.subtext}>
             Already have an account on the Next Blog?&nbsp;
-            <Link className={styles['signin-link']} href='/login'>
-              Sign in
+            <Link className={styles['login-link']} href='/login'>
+              Log in
             </Link>
           </span>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
