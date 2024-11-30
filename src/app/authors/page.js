@@ -16,7 +16,6 @@ export default async function Authors() {
         authorization: `Bearer ${session?.backendTokens?.accessToken}`
       }
     });
-    console.log(res);
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }

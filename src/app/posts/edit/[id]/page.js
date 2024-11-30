@@ -36,8 +36,6 @@ export default function EditPostPage({ params }) {
     });
 
     const data = await res.json();
-
-    console.log(data);
   };
 
   const handleChange = useCallback((e) => {

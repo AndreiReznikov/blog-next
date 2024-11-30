@@ -9,10 +9,9 @@ const refreshToken = async (token) => {
       authorization: `Refresh ${token.backendTokens.refreshToken}`,
     },
   });
-  console.log('refreshed');
 
   const response = await res.json();
-  console.log(response);
+
   return {
     ...token,
     backendTokens: response,
@@ -39,8 +38,6 @@ export const authOptions = {
         });
 
         if (res.status === 401) {
-          console.log(res.statusText);
-
           return null;
         }
 

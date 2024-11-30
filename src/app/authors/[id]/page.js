@@ -6,8 +6,6 @@ export default async function PostsPage({ params }) {
   const res = await fetch(`${BACKEND_URL}/user/${params.id}`);
   const author = await res.json();
 
-  console.log(author);
-
   const { name, email, aboutInfo, posts } = author;
 
   return (
@@ -21,7 +19,7 @@ export default async function PostsPage({ params }) {
             {aboutInfo}
           </p>
         </div>
-        <h2 className={styles.title}>Author posts</h2>
+        <h2 className={styles.title}>Author's posts</h2>
         <div className={styles.posts}>
           {posts?.map(post => (
             <article key={post?.id}>

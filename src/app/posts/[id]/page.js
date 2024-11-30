@@ -5,7 +5,7 @@ import styles from './page.module.css';
 export default async function SinglePost({ params }) {
   const res = await fetch(`${BACKEND_URL}/post/${params.id}`);
   const post = await res.json();
-  console.log(post);
+
   return (
     <main className={styles.main}>
       <div className={styles.container}>

@@ -12,6 +12,26 @@
   margin: 0 auto;
 }
 
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+.add-post-link-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.add-post-link {
+  max-width: 380px;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid white;
+  border-radius: 6px;
+  text-align: center;
+}
+
 .posts-wrapper {
   display: flex;
   flex-direction: column;
