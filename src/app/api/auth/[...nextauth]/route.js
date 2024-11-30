@@ -2,6 +2,23 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { BACKEND_URL } from "@/lib/Constants";
 import NextAuth from "next-auth";
 
+const refreshToken = async (token) => {
+  const res = await fetch(`${BACKEND_URL}/auth/refresh`, {
+    method: 'POST',
+    headers: {
+      authorization: `Refresh ${token.backendTokens.refreshToken}`,
+    },
+  });
+  console.log('refreshed');
+
+  const response = await res.json();
+  console.log(response);
+  return {
+    ...token,
+    backendTokens: response,
+  };
+}
+
 export const authOptions = {
   providers: [
     CredentialsProvider({
@@ -36,7 +53,9 @@ export const authOptions = {
     async jwt({ token, user }) {
       if (user) return { ...token, ...user };
 
-      return token;
+      if (new Date().getTime() < token.backendTokens.expiresIn) return token;
+
+      return await refreshToken(token);
     },
 
     async session({ token, session }) {
