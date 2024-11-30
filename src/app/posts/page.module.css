@@ -17,6 +17,24 @@
   justify-content: center;
 }
 
+.article {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-link {
+  flex: 1;
+}
+
+.post-edit-link {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 5px 20px;
+  border: 1px solid white;
+  border-radius: 6px;
+}
+
 .add-post-link-container {
   display: flex;
   justify-content: center;

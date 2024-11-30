@@ -20,12 +20,16 @@ export default async function PostsPage() {
         }
         <div className={styles['posts-wrapper']}>
           {posts?.map(post => (
-            <Link href={`posts/${post.id}`}>
-              <article key={post.id}>
-                <h2>{post.title}</h2>
-                <p>{post.description}</p>
-              </article>
-            </Link>
+            <article className={styles.article} key={post?.id}>
+              <Link className={styles['post-link']} href={`posts/${post?.id}`}>
+                <h2>{post?.title}</h2>
+                <p>{post?.description}</p>
+              </Link>
+              {
+                session?.user?.id === post?.userId
+                && <Link className={styles['post-edit-link']} href={`posts/edit/${post?.id}`}>Edit post</Link>
+              }
+            </article>
           ))}
         </div>
       </div>
