@@ -4,9 +4,11 @@ import { BACKEND_URL } from '@/lib/Constants';
 import { useSession } from 'next-auth/react';
 import { useCallback, useRef } from 'react';
 import styles from './page.module.css'
+import { useRouter } from 'next/navigation';
 
 export default function AddPostPage() {
   const session = useSession();
+  const router = useRouter();
 
   const postData = useRef({
     title: '',
@@ -14,7 +16,7 @@ export default function AddPostPage() {
   });
 
   const addPost = useCallback(async () => {
-    const res = await fetch(`${BACKEND_URL}/post/create`, {
+    await fetch(`${BACKEND_URL}/post/create`, {
       cache: 'no-cache',
       method: 'POST',
       headers: {
@@ -23,14 +25,10 @@ export default function AddPostPage() {
       },
       body: JSON.stringify({
         ...postData.current,
-        authorId: 1,
+        authorId: session?.data?.user?.id,
       })
-    });
-
-    const data = await res.json();
-
-    console.log(data);
-  }, []);
+    }).then(() => router.push('/posts'));
+  }, [session, postData.current?.title, postData.current?.description]);
 
   return (
     <main className={styles.main}>
@@ -49,7 +47,7 @@ export default function AddPostPage() {
               placeholder='Description'
             />
             <div className={styles['button-container']}>
-              <button className={styles.button} onClick={addPost}>Add post</button>
+              <button type='button' className={styles.button} onClick={addPost}>Add post</button>
             </div>
           </form>
         </div>

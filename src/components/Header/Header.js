@@ -1,11 +1,11 @@
 'use client';
 
-import styles from './header.module.css';
 import Image from 'next/image';
 import image from '@/assets/logo/logo.png';
 import userIcon from '@/assets/icons/user-icon.svg';
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
+import styles from './header.module.css';
 
 export default function Header() {
   const session = useSession();

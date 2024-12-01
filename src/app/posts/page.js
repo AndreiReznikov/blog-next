@@ -3,13 +3,25 @@ import { BACKEND_URL } from '@/lib/Constants';
 import styles from './page.module.css';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../api/auth/[...nextauth]/route';
+import Post from '@/components/Post/Post';
 
 export default async function PostsPage() {
   const session = await getServerSession(authOptions);
-  const res = await fetch(`${BACKEND_URL}/post`, { cache: 'no-cache' });
-  const posts = await res.json();
 
-  console.log(session);
+  let posts = [];
+
+  try {
+    const res = await fetch(`${BACKEND_URL}/post`, { cache: 'no-cache' });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    posts = await res.json();
+  } catch (error) {
+    console.error('Fetch error:', error);
+    posts = [];
+  }
 
   if (!posts?.length) return (
     <div className={styles['not-found-container']}>
@@ -33,16 +45,7 @@ export default async function PostsPage() {
         }
         <div className={styles['posts-wrapper']}>
           {posts?.map(post => (
-            <article className={styles.article} key={post?.id}>
-              <Link className={styles['post-link']} href={`posts/${post?.id}`}>
-                <h2>{post?.title}</h2>
-                <p>{post?.description}</p>
-              </Link>
-              {
-                session?.user?.id === post?.authorId
-                && <Link className={styles['post-edit-link']} href={`posts/edit/${post?.id}`}>Edit</Link>
-              }
-            </article>
+            <Post post={post} />
           ))}
         </div>
       </div>

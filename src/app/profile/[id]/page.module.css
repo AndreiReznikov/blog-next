@@ -14,36 +14,15 @@
 
 .not-found-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   min-height: calc(100vh - 90px);
 }
 
-.title {
-  display: flex;
-  justify-content: center;
-}
-
-.add-post-link-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
-}
-
-.add-post-link {
-  max-width: 380px;
-  width: 100%;
-  padding: 15px;
-  border: 1px solid white;
-  border-radius: 6px;
-  text-align: center;
-}
-
-.posts-wrapper {
+.article {
   display: flex;
   flex-direction: column;
-  margin-top: 2rem;
   gap: 1rem;
+  margin-top: 2rem;
 }

@@ -1,0 +1,32 @@
+.article {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-link {
+  flex: 1;
+}
+
+.actions-container {
+  display: flex;
+  gap: 5px;
+}
+
+.post-edit-link {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 5px 20px;
+  border: 1px solid white;
+  border-radius: 6px;
+}
+
+.post-delete-button {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

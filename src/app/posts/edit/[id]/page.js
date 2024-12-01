@@ -4,9 +4,12 @@ import { BACKEND_URL } from '@/lib/Constants';
 import { useCallback, useState, useEffect } from 'react';
 import styles from './page.module.css'
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function EditPostPage({ params }) {
   const session = useSession();
+  const router = useRouter();
+
   const [currentPost, setCurrentPost] = useState({
     title: '',
     description: '',
@@ -26,8 +29,8 @@ export default function EditPostPage({ params }) {
     fetchPost();
   }, [fetchPost]);
 
-  const editPost = async () => {
-    const res = await fetch(`${BACKEND_URL}/post/${params.id}`, {
+  const editPost = useCallback(async () => {
+    await fetch(`${BACKEND_URL}/post/${params.id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -36,10 +39,8 @@ export default function EditPostPage({ params }) {
       body: JSON.stringify({
         ...currentPost,
       })
-    });
-
-    const data = await res.json();
-  };
+    }).then(() => router.push('/posts'));
+  }, [session, currentPost]);
 
   const handleChange = useCallback((e) => {
     const { name, value } = e.target;
@@ -70,7 +71,7 @@ export default function EditPostPage({ params }) {
               placeholder='Description'
             />
             <div className={styles['button-container']}>
-              <button className={styles.button} onClick={editPost}>Edit</button>
+              <button type='button' className={styles.button} onClick={editPost}>Edit</button>
             </div>
           </form>
         </div>
