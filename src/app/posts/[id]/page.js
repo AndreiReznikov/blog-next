@@ -31,7 +31,7 @@ export default async function SinglePost({ params }) {
         <article className={styles.article}>
           {
             session?.user?.id === post?.authorId
-            && <Link className={styles['post-edit-link']} href={`edit/${params.id}`}>Edit post</Link>
+            && <Link className={styles['post-edit-link']} href={`edit/${params.id}`}>Edit</Link>
           }
           <h1>{post?.title}</h1>
           <p>{post?.description}</p>

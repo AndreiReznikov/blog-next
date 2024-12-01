@@ -52,7 +52,7 @@ export default function EditPostPage({ params }) {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <h1 className={styles.title}>Edit post</h1>
+        <h1 className={styles.title}>Edit</h1>
         <div className={styles['form-container']}>
           {/* <form className={styles.form}> */}
             <input
@@ -70,7 +70,7 @@ export default function EditPostPage({ params }) {
               placeholder='Description'
             />
             <div className={styles['button-container']}>
-              <button className={styles.button} onClick={editPost}>Edit post</button>
+              <button className={styles.button} onClick={editPost}>Edit</button>
             </div>
           {/* </form> */}
         </div>
