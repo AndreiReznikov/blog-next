@@ -3,8 +3,10 @@
 import { BACKEND_URL } from '@/lib/Constants';
 import { useCallback, useState, useEffect } from 'react';
 import styles from './page.module.css'
+import { useSession } from 'next-auth/react';
 
 export default function EditPostPage({ params }) {
+  const session = useSession();
   const [currentPost, setCurrentPost] = useState({
     title: '',
     description: '',
@@ -29,6 +31,7 @@ export default function EditPostPage({ params }) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        authorization: `Bearer ${session?.backendTokens?.accessToken}`
       },
       body: JSON.stringify({
         ...currentPost,
@@ -51,7 +54,7 @@ export default function EditPostPage({ params }) {
       <div className={styles.container}>
         <h1 className={styles.title}>Edit post</h1>
         <div className={styles['form-container']}>
-          <form className={styles.form}>
+          {/* <form className={styles.form}> */}
             <input
               name="title"
               value={currentPost.title}
@@ -69,7 +72,7 @@ export default function EditPostPage({ params }) {
             <div className={styles['button-container']}>
               <button className={styles.button} onClick={editPost}>Edit post</button>
             </div>
-          </form>
+          {/* </form> */}
         </div>
       </div>
     </main>

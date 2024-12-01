@@ -37,7 +37,7 @@ export default function AddPostPage() {
       <div className={styles.container}>
         <h1 className={styles.title}>Add post</h1>
         <div className={styles['form-container']}>
-          {/* <form className={styles.form}> */}
+          <form className={styles.form}>
             <input
               className={styles.input}
               onChange={(e) => postData.current.title = e.target.value}
@@ -51,7 +51,7 @@ export default function AddPostPage() {
             <div className={styles['button-container']}>
               <button className={styles.button} onClick={addPost}>Add post</button>
             </div>
-          {/* </form> */}
+          </form>
         </div>
       </div>
     </main>

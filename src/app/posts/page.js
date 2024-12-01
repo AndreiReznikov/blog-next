@@ -39,7 +39,7 @@ export default async function PostsPage() {
                 <p>{post?.description}</p>
               </Link>
               {
-                session?.user?.id === post?.userId
+                session?.user?.id === post?.authorId
                 && <Link className={styles['post-edit-link']} href={`posts/edit/${post?.id}`}>Edit post</Link>
               }
             </article>

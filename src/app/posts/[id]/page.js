@@ -30,8 +30,8 @@ export default async function SinglePost({ params }) {
         <Link href='/posts'>&#8592; Back to all posts</Link>
         <article className={styles.article}>
           {
-            session?.user?.id === post?.userId
-            && <Link className={styles['post-edit-link']} href={`posts/edit/${params.id}`}>Edit post</Link>
+            session?.user?.id === post?.authorId
+            && <Link className={styles['post-edit-link']} href={`edit/${params.id}`}>Edit post</Link>
           }
           <h1>{post?.title}</h1>
           <p>{post?.description}</p>
