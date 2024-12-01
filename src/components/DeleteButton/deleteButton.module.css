@@ -1,0 +1,9 @@
+.post-delete-button {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

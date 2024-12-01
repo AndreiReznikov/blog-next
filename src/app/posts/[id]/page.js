@@ -3,6 +3,7 @@ import { BACKEND_URL } from '@/lib/Constants';
 import styles from './page.module.css';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import DeleteButton from '@/components/DeleteButton/DeleteButton';
 
 export default async function SinglePost({ params }) {
   const session = await getServerSession(authOptions);
@@ -31,7 +32,11 @@ export default async function SinglePost({ params }) {
         <article className={styles.article}>
           {
             session?.user?.id === post?.authorId
-            && <Link className={styles['post-edit-link']} href={`edit/${params.id}`}>Edit</Link>
+            &&
+            <div className={styles['actions-container']}>
+              <Link className={styles['post-edit-link']} href={`edit/${post?.id}`}>Edit</Link>
+              <DeleteButton id={post?.id} />
+            </div>
           }
           <h1>{post?.title}</h1>
           <p>{post?.description}</p>

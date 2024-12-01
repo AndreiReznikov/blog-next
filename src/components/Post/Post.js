@@ -7,7 +7,7 @@ import { useSession } from 'next-auth/react';
 
 export default function Post({ post }) {
   const session = useSession();
-  console.log(session)
+
   const deletePost = async (id) => {
     const res = await fetch(`${BACKEND_URL}/post/${id}`, {
       cache: 'no-cache',
