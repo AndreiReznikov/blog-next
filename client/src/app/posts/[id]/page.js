@@ -28,7 +28,7 @@ export default async function SinglePost({ params }) {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <Link href='/posts'>&#8592; Back to all posts</Link>
+        <Link href='/posts'>&#8592; To all posts</Link>
         <article className={styles.article}>
           {
             session?.user?.id === post?.authorId

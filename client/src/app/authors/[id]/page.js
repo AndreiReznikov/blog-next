@@ -11,7 +11,7 @@ export default async function AuthorPage({ params }) {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <Link href='/authors'>&#8592; Back to authors</Link>
+        <Link href='/authors'>&#8592; To all authors</Link>
         <div className={styles.info}>
           <h1>{name}</h1>
           <div>{email}</div>
