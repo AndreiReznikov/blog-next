@@ -7,7 +7,7 @@ import styles from './page.module.css'
 
 export default function AddPostPage() {
   const session = useSession();
-  console.log(session);
+
   const postData = useRef({
     title: '',
     description: '',
@@ -19,7 +19,7 @@ export default function AddPostPage() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        authorization: `Bearer ${session?.backendTokens?.accessToken}`
+        authorization: `Bearer ${session?.data?.backendTokens?.accessToken}`
       },
       body: JSON.stringify({
         ...postData.current,
