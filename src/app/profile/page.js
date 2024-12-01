@@ -19,7 +19,7 @@ export default async function Profile() {
         <div className={styles.posts}>
           {posts?.map(post => (
             <article key={post?.id}>
-              <Link href={`profile/${post?.id}`}>
+              <Link href={`/posts/${post?.id}`}>
                 <h3>{post?.title}</h3>
               </Link>
               <p>{post?.description}</p>
