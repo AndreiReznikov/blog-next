@@ -27,9 +27,7 @@ export default async function Authors() {
   }
 
   if (!authors?.length) return (
-    <main className={styles.main}>
-      <div>The authors have not been found</div>
-    </main>
+    <div className={styles['not-found-container']}>The authors have not been found</div>
   );
 
   return (

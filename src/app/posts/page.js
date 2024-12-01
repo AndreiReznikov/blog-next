@@ -9,13 +9,26 @@ export default async function PostsPage() {
   const res = await fetch(`${BACKEND_URL}/post`, { cache: 'no-cache' });
   const posts = await res.json();
 
+  console.log(session);
+
+  if (!posts?.length) return (
+    <div className={styles['not-found-container']}>
+      <span>The posts have not been found</span>
+      {session?.user &&
+        <div className={styles['add-post-link-container']}>
+          {session?.user && <Link className={styles['add-post-link']} href='/posts/add'>+ Add post</Link>}
+        </div>
+      }
+    </div>
+  );
+
   return (
     <main className={styles.main}>
       <div className={styles.container}>
         <h1 className={styles.title}>All Posts</h1>
         {session?.user &&
           <div className={styles['add-post-link-container']}>
-            <Link className={styles['add-post-link']} href='/posts/add'>+ Add post</Link>
+            {session?.user && <Link className={styles['add-post-link']} href='/posts/add'>+ Add post</Link>}
           </div>
         }
         <div className={styles['posts-wrapper']}>

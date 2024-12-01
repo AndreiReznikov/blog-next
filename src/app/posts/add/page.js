@@ -7,7 +7,7 @@ import styles from './page.module.css'
 
 export default function AddPostPage() {
   const session = useSession();
-
+  console.log(session);
   const postData = useRef({
     title: '',
     description: '',
@@ -15,17 +15,21 @@ export default function AddPostPage() {
 
   const addPost = useCallback(async () => {
     const res = await fetch(`${BACKEND_URL}/post/create`, {
+      cache: 'no-cache',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        authorization: `Bearer ${session?.backendTokens?.accessToken}`
       },
       body: JSON.stringify({
         ...postData.current,
-        userId: 1,
+        authorId: 1,
       })
     });
 
     const data = await res.json();
+
+    console.log(data);
   }, []);
 
   return (
@@ -33,7 +37,7 @@ export default function AddPostPage() {
       <div className={styles.container}>
         <h1 className={styles.title}>Add post</h1>
         <div className={styles['form-container']}>
-          <form className={styles.form}>
+          {/* <form className={styles.form}> */}
             <input
               className={styles.input}
               onChange={(e) => postData.current.title = e.target.value}
@@ -47,7 +51,7 @@ export default function AddPostPage() {
             <div className={styles['button-container']}>
               <button className={styles.button} onClick={addPost}>Add post</button>
             </div>
-          </form>
+          {/* </form> */}
         </div>
       </div>
     </main>

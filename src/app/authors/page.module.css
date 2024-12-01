@@ -1,7 +1,6 @@
 .main {
   display: flex;
   justify-content: center;
-  align-items: center;
   max-width: 1200px;
   min-height: calc(100vh - 90px);
   margin: 0 auto;
@@ -12,6 +11,14 @@
   max-width: 900px;
   width: 100%;
   margin: 0 auto;
+}
+
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: calc(100vh - 90px);
 }
 
 .wrapper {

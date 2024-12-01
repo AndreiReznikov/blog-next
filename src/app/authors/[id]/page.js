@@ -2,8 +2,8 @@ import Link from 'next/link';
 import styles from './page.module.css'
 import { BACKEND_URL } from '@/lib/Constants';
 
-export default async function PostsPage({ params }) {
-  const res = await fetch(`${BACKEND_URL}/user/${params.id}`);
+export default async function AuthorPage({ params }) {
+  const res = await fetch(`${BACKEND_URL}/user/${params.id}`, { cache: 'no-cache'});
   const author = await res.json();
 
   const { name, email, aboutInfo, posts } = author;

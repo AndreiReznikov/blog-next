@@ -12,6 +12,14 @@
   margin: 0 auto;
 }
 
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: calc(100vh - 90px);
+}
+
 .article {
   display: flex;
   flex-direction: column;
