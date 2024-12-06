@@ -31,3 +31,9 @@
   margin: 40px 0;
   text-decoration: underline;
 }
+
+.posts-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

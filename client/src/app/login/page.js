@@ -1,9 +1,9 @@
 'use client';
 
-import { signIn } from 'next-auth/react';
-import styles from './page.module.css'
 import { useRef } from 'react';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
+import styles from './page.module.css'
 
 export default async function LoginPage() {
   const postData = useRef({

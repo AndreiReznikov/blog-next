@@ -28,7 +28,17 @@
   border-radius: var(--border-radius);
 }
 
+.posts-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .title {
   margin: 40px 0;
   text-decoration: underline;
+}
+
+.no-posts-text {
+  margin: 40px 0;
 }

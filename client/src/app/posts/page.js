@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { BACKEND_URL } from '@/lib/Constants';
-import styles from './page.module.css';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../api/auth/[...nextauth]/route';
+import { BACKEND_URL } from '@/lib/Constants';
 import Post from '@/components/Post/Post';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import styles from './page.module.css';
 
 export default async function PostsPage() {
   const session = await getServerSession(authOptions);
@@ -11,7 +11,12 @@ export default async function PostsPage() {
   let posts = [];
 
   try {
-    const res = await fetch(`${BACKEND_URL}/post`, { cache: 'no-cache' });
+    const res = await fetch(`${BACKEND_URL}/post`, {
+      headers: {
+        authorization: `Bearer ${session?.backendTokens?.accessToken}`,
+      },
+      cache: 'no-cache',
+    });
 
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
