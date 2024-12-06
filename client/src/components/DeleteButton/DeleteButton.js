@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { BACKEND_URL } from '@/lib/Constants';
 import styles from './deleteButton.module.css';
 
-export default function DeleteButton ({ id }) {
+export default function DeleteButton({ id }) {
   const session = useSession();
   const router = useRouter();
 
@@ -18,7 +18,10 @@ export default function DeleteButton ({ id }) {
         'Content-Type': 'application/json',
         authorization: `Bearer ${session?.data?.backendTokens?.accessToken}`
       },
-    }).then(() => router.push('/posts'));
+    }).then(() => {
+      router.push('/posts');
+      setTimeout(() => router.refresh());
+    });
   }, [id, session]);
 
   return (

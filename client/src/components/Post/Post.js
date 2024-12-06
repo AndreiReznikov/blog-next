@@ -1,22 +1,24 @@
 'use client';
 
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { BACKEND_URL } from '@/lib/Constants';
 import styles from './post.module.css';
-import { useSession } from 'next-auth/react';
 
 export default function Post({ post }) {
   const session = useSession();
+  const router = useRouter();
 
   const deletePost = async (id) => {
-    const res = await fetch(`${BACKEND_URL}/post/${id}`, {
+    await fetch(`${BACKEND_URL}/post/${id}`, {
       cache: 'no-cache',
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
         authorization: `Bearer ${session?.data?.backendTokens?.accessToken}`
       },
-    });
+    }).then(() => router.refresh());
   };
 
   return (

@@ -39,7 +39,10 @@ export default function EditPostPage({ params }) {
       body: JSON.stringify({
         ...currentPost,
       })
-    }).then(() => router.push('/posts'));
+    }).then(() => {
+      router.push('/posts');
+      setTimeout(() => router.refresh());
+    });
   }, [session, currentPost]);
 
   const handleChange = useCallback((e) => {

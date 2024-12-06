@@ -27,7 +27,10 @@ export default function AddPostPage() {
         ...postData.current,
         authorId: session?.data?.user?.id,
       })
-    }).then(() => router.push('/posts'));
+    }).then(() => {
+      router.push('/posts');
+      setTimeout(() => router.refresh());
+    });
   }, [session, postData.current?.title, postData.current?.description]);
 
   return (
