@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import styles from './page.module.css'
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../api/auth/[...nextauth]/route';
+import styles from './page.module.css'
 
 export default async function Profile() {
   const session = await getServerSession(authOptions);

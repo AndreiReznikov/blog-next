@@ -15,11 +15,13 @@ import { JwtGuard } from 'src/auth/guards/jwt.guard';
 export class PostController {
   constructor(private postService: PostService) {}
 
+  @UseGuards(JwtGuard)
   @Get()
   async getAllPosts() {
     return await this.postService.findAll();
   }
 
+  @UseGuards(JwtGuard)
   @Get(':id')
   async getPost(@Param('id') id: number) {
     return await this.postService.findById(id);

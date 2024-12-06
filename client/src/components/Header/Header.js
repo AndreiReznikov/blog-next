@@ -1,15 +1,22 @@
 'use client';
 
 import Image from 'next/image';
-import image from '@/assets/logo/logo.png';
-import userIcon from '@/assets/icons/user-icon.svg';
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
+import image from '@/assets/logo/logo.png';
+import userIcon from '@/assets/icons/user-icon.svg';
 import styles from './header.module.css';
+import { useCallback } from 'react';
 
 export default function Header() {
   const session = useSession();
+
+  const handleSignOut = useCallback(() => {
+    signOut({ callbackUrl: '/' });
+  }, []);
+
   console.log(session);
+
   return (
     <header className={styles.header}>
       <div className={styles['left-side-container']}>
@@ -39,7 +46,7 @@ export default function Header() {
         </Link>
         {
           session.status === 'authenticated' &&
-          <span className={styles.signout} onClick={() => signOut({ redirect: false })}>
+          <span className={styles.signout} onClick={handleSignOut}>
             Sign Out
           </span>
         }

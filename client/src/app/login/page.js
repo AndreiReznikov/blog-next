@@ -6,13 +6,15 @@ import { useRef } from 'react';
 import Link from 'next/link';
 
 export default async function LoginPage() {
-  const email = useRef('');
-  const password = useRef('');
+  const postData = useRef({
+    email: '',
+    password: '',
+  });
 
   const onSubmit = async () => {
     await signIn('credentials', {
-      email: email.current,
-      password: password.current,
+      email: postData.current.email,
+      password: postData.current.password,
       redirect: true,
       callbackUrl: '/',
     });
@@ -24,8 +26,20 @@ export default async function LoginPage() {
         <div className={styles.form}>
           <h2>Log in</h2>
           <div className={styles['inputs-wrapper']}>
-            <input onChange={(e) => email.current = e.target.value} className={styles.input} type='email' placeholder='Email' required />
-            <input onChange={(e) => password.current = e.target.value} className={styles.input} type='password' placeholder='Password' required />
+            <input
+              onChange={(e) => postData.current.email = e.target.value}
+              className={styles.input}
+              type='email'
+              placeholder='Email'
+              required
+            />
+            <input
+              onChange={(e) => postData.current.password = e.target.value}
+              className={styles.input}
+              type='password'
+              placeholder='Password'
+              required
+            />
           </div>
           <div className={styles['button-wrapper']}>
             <button onClick={onSubmit} className={styles.button}>Log in</button>
