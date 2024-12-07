@@ -6,12 +6,11 @@ import { useRouter } from 'next/navigation';
 import { BACKEND_URL } from '@/lib/Constants';
 import { truncate } from '@/lib/Utils';
 import styles from './post.module.css';
-import { useMemo } from 'react';
 
 export default function Post({ post }) {
   const session = useSession();
   const router = useRouter();
-
+  console.log(post);
   const deletePost = async (id) => {
     try {
       await fetch(`${BACKEND_URL}/post/${id}`, {
@@ -31,7 +30,11 @@ export default function Post({ post }) {
     <article className={styles.article} key={post?.id}>
       <Link className={styles['post-link']} href={`/posts/${post?.id}`}>
         <h2>{post?.title}</h2>
-        <span className={styles.date}>{post?.creationDate}</span>
+        <div className={styles['post-info']}>
+          <span className={styles.info}>{post?.author?.name}</span>
+          {' '}
+          <span className={styles.info}>{post?.creationDate}</span>
+        </div>
         <p className={styles.description}>{truncate(post?.description, 280)}</p>
       </Link>
       {

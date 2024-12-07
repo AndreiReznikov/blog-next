@@ -11,8 +11,8 @@ import styles from './header.module.css';
 export default function Header() {
   const session = useSession();
 
-  const handleSignOut = useCallback(() => {
-    signOut({ callbackUrl: '/' });
+  const handleSignOut = useCallback(async () => {
+    await signOut({ callbackUrl: '/' });
   }, []);
 
   return (

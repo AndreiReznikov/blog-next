@@ -43,7 +43,11 @@ export default async function SinglePost({ params }) {
             </div>
           }
           <h1 className={styles.title}>{post?.title}</h1>
-          <span className={styles.date}>{post?.creationDate}</span>
+          <div className={styles['post-info']}>
+            <span className={styles.info}>{post?.author?.name}</span>
+            {' '}
+            <span className={styles.info}>{post?.creationDate}</span>
+          </div>
           <p className={styles.description}>{post?.description}</p>
         </article>
       </div>

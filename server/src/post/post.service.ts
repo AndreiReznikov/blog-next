@@ -31,6 +31,7 @@ export class PostService {
       where: {
         id: id,
       },
+      include: { author: true },
     });
   }
 
@@ -45,6 +46,8 @@ export class PostService {
   }
 
   async findAll() {
-    return await this.prisma.post.findMany();
+    return await this.prisma.post.findMany({
+      include: { author: true },
+    });
   }
 }
