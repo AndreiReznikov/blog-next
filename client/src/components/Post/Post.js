@@ -6,13 +6,13 @@ import { useRouter } from 'next/navigation';
 import { BACKEND_URL } from '@/lib/Constants';
 import { truncate } from '@/lib/Utils';
 import styles from './post.module.css';
-import { useCallback } from 'react';
+import { useMemo } from 'react';
 
 export default function Post({ post }) {
   const session = useSession();
   const router = useRouter();
 
-  const deletePost = useCallback(async (id) => {
+  const deletePost = async (id) => {
     try {
       await fetch(`${BACKEND_URL}/post/${id}`, {
         cache: 'no-cache',
@@ -25,13 +25,14 @@ export default function Post({ post }) {
     } catch (error) {
       console.error('Fetch error:', error);
     }
-  }, [session?.data]);
+  };
 
   return (
     <article className={styles.article} key={post?.id}>
       <Link className={styles['post-link']} href={`/posts/${post?.id}`}>
         <h2>{post?.title}</h2>
-        <p>{truncate(post?.description, 280)}</p>
+        <span className={styles.date}>{post?.creationDate}</span>
+        <p className={styles.description}>{truncate(post?.description, 280)}</p>
       </Link>
       {
         session?.data?.user?.id === post?.authorId

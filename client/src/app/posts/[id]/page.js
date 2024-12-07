@@ -42,8 +42,9 @@ export default async function SinglePost({ params }) {
               <DeleteButton id={post?.id} />
             </div>
           }
-          <h1>{post?.title}</h1>
-          <p>{post?.description}</p>
+          <h1 className={styles.title}>{post?.title}</h1>
+          <span className={styles.date}>{post?.creationDate}</span>
+          <p className={styles.description}>{post?.description}</p>
         </article>
       </div>
     </main>

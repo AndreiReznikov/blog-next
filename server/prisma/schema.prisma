@@ -22,9 +22,10 @@ model User {
 }
 
 model Post {
-  id          Int    @id @default(autoincrement())
-  title       String
-  description String
-  authorId    Int
-  author      User?   @relation(fields: [authorId], references: [id])
+  id           Int    @id @default(autoincrement())
+  title        String
+  description  String
+  creationDate String
+  authorId     Int
+  author       User?  @relation(fields: [authorId], references: [id])
 }

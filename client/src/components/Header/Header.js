@@ -15,8 +15,6 @@ export default function Header() {
     signOut({ callbackUrl: '/' });
   }, []);
 
-  console.log(session);
-
   return (
     <header className={styles.header}>
       <div className={styles['left-side-container']}>

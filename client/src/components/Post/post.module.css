@@ -4,7 +4,17 @@
 }
 
 .post-link {
+  display: flex;
+  flex-direction: column;
   flex: 1;
+}
+
+.description {
+  margin-top: 15px;
+}
+
+.date {
+  font-size: 14px;
 }
 
 .actions-container {

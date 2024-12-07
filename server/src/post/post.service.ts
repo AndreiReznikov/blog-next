@@ -1,13 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 import { CreatePostDto, UpdatePostDto } from './dto/post.dto';
+import { getCurrentDateString } from 'src/libs/Utils';
 
 @Injectable()
 export class PostService {
   constructor(private prisma: PrismaService) {}
 
   async create(dto: CreatePostDto) {
-    await this.prisma.post.create({ data: dto });
+    await this.prisma.post.create({
+      data: { ...dto, creationDate: getCurrentDateString() },
+    });
 
     return await this.findAll();
   }
