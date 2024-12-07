@@ -1,10 +1,10 @@
 'use client';
 
-import { BACKEND_URL } from '@/lib/Constants';
+import { useRef } from 'react';
 import { useSession } from 'next-auth/react';
-import { useCallback, useRef } from 'react';
-import styles from './page.module.css'
 import { useRouter } from 'next/navigation';
+import { BACKEND_URL } from '@/lib/Constants';
+import styles from './page.module.css'
 
 export default function AddPostPage() {
   const session = useSession();
@@ -15,23 +15,27 @@ export default function AddPostPage() {
     description: '',
   });
 
-  const addPost = useCallback(async () => {
-    await fetch(`${BACKEND_URL}/post/create`, {
-      cache: 'no-cache',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${session?.data?.backendTokens?.accessToken}`
-      },
-      body: JSON.stringify({
-        ...postData.current,
-        authorId: session?.data?.user?.id,
-      })
-    }).then(() => {
-      router.push('/posts');
-      setTimeout(() => router.refresh());
-    });
-  }, [session, postData.current?.title, postData.current?.description]);
+  const addPost = async () => {
+    try {
+      await fetch(`${BACKEND_URL}/post/create`, {
+        cache: 'no-cache',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${session?.data?.backendTokens?.accessToken}`
+        },
+        body: JSON.stringify({
+          ...postData.current,
+          authorId: session?.data?.user?.id,
+        })
+      }).then(() => {
+        router.push('/posts');
+        setTimeout(() => router.refresh());
+      });
+    } catch (error) {
+      console.error('Fetch error:', error);
+    }
+  };
 
   return (
     <main className={styles.main}>

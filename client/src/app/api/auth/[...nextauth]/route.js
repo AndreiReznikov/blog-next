@@ -21,19 +21,19 @@ const refreshToken = async (token) => {
 export const authOptions = {
   providers: [
     CredentialsProvider({
-      name: "Credentials",
-      async authorize(credentials, req) {
+      name: 'Credentials',
+      async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
         const { email, password } = credentials;
 
-        const res = await fetch(BACKEND_URL + "/auth/login", {
-          method: "POST",
+        const res = await fetch(`${BACKEND_URL}/auth/login`, {
+          method: 'POST',
           body: JSON.stringify({
             username: email,
             password,
           }),
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           }
         });
 
@@ -63,7 +63,7 @@ export const authOptions = {
     }
   },
   pages: {
-    signIn: "/login"
+    signIn: '/login'
   }
 };
 

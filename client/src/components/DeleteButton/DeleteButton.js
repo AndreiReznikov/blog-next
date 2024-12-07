@@ -11,17 +11,21 @@ export default function DeleteButton({ id }) {
   const router = useRouter();
 
   const deletePost = useCallback(async () => {
-    await fetch(`${BACKEND_URL}/post/${id}`, {
-      cache: 'no-cache',
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${session?.data?.backendTokens?.accessToken}`
-      },
-    }).then(() => {
-      router.push('/posts');
-      setTimeout(() => router.refresh());
-    });
+    try {
+      await fetch(`${BACKEND_URL}/post/${id}`, {
+        cache: 'no-cache',
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${session?.data?.backendTokens?.accessToken}`
+        },
+      }).then(() => {
+        router.push('/posts');
+        setTimeout(() => router.refresh());
+      });
+    } catch (error) {
+      console.error('Fetch error:', error);
+    }
   }, [id, session]);
 
   return (

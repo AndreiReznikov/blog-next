@@ -6,21 +6,26 @@ import { useRouter } from 'next/navigation';
 import { BACKEND_URL } from '@/lib/Constants';
 import { truncate } from '@/lib/Utils';
 import styles from './post.module.css';
+import { useCallback } from 'react';
 
 export default function Post({ post }) {
   const session = useSession();
   const router = useRouter();
 
-  const deletePost = async (id) => {
-    await fetch(`${BACKEND_URL}/post/${id}`, {
-      cache: 'no-cache',
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${session?.data?.backendTokens?.accessToken}`
-      },
-    }).then(() => router.refresh());
-  };
+  const deletePost = useCallback(async (id) => {
+    try {
+      await fetch(`${BACKEND_URL}/post/${id}`, {
+        cache: 'no-cache',
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${session?.data?.backendTokens?.accessToken}`
+        },
+      }).then(() => router.refresh());
+    } catch (error) {
+      console.error('Fetch error:', error);
+    }
+  }, [session?.data]);
 
   return (
     <article className={styles.article} key={post?.id}>

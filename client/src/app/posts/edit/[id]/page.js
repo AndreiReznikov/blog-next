@@ -1,10 +1,10 @@
 'use client';
 
-import { BACKEND_URL } from '@/lib/Constants';
 import { useCallback, useState, useEffect } from 'react';
-import styles from './page.module.css'
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { BACKEND_URL } from '@/lib/Constants';
+import styles from './page.module.css'
 
 export default function EditPostPage({ params }) {
   const session = useSession();
@@ -16,13 +16,25 @@ export default function EditPostPage({ params }) {
   });
 
   const fetchPost = useCallback(async () => {
-    const res = await fetch(`${BACKEND_URL}/post/${params.id}`);
-    const data = await res.json();
+    try {
+      const res = await fetch(`${BACKEND_URL}/post/${params.id}`, {
+        headers: {
+          authorization: `Bearer ${session?.data?.backendTokens?.accessToken}`,
+        },
+        cache: 'no-cache',
+      });
 
-    setCurrentPost({
-      title: data?.title,
-      description: data?.description,
-    });
+      const data = await res.json();
+
+      if (!data) return;
+
+      setCurrentPost({
+        title: data?.title,
+        description: data?.description,
+      });
+    } catch (error) {
+      console.error('Fetch error:', error);
+    }
   }, [params.id]);
 
   useEffect(() => {

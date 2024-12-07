@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { BACKEND_URL } from '@/lib/Constants';
-import styles from './page.module.css';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import DeleteButton from '@/components/DeleteButton/DeleteButton';
+import { BACKEND_URL } from '@/lib/Constants';
+import styles from './page.module.css';
 
 export default async function SinglePost({ params }) {
   const session = await getServerSession(authOptions);

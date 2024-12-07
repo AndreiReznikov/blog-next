@@ -16,17 +16,21 @@ export default function RegisterPage() {
   });
 
   const register = async () => {
-    await fetch(BACKEND_URL + '/auth/register', {
-      method: 'POST',
-      body: JSON.stringify({
-        name: postData.current.name,
-        email: postData.current.email,
-        password: postData.current.password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(() => router.push('/login'));
+    try {
+      await fetch(BACKEND_URL + '/auth/register', {
+        method: 'POST',
+        body: JSON.stringify({
+          name: postData.current.name,
+          email: postData.current.email,
+          password: postData.current.password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then(() => router.push('/login'));
+    } catch (error) {
+      console.error('Fetch error:', error);
+    }
   };
 
   return (
