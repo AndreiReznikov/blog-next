@@ -11,7 +11,7 @@ export default async function SinglePost({ params }) {
   let post;
 
   try {
-    const res = await fetch(`${BACKEND_URL}/post/${params.id}`, {
+    const res = await fetch(`${BACKEND_URL}/posts/${params.id}`, {
       headers: {
         authorization: `Bearer ${session?.backendTokens?.accessToken}`,
       }

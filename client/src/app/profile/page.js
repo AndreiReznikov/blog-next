@@ -10,7 +10,7 @@ export default async function Profile() {
   let profile;
 
   try {
-    const res = await fetch(`${BACKEND_URL}/user/${session?.user?.id}`, {
+    const res = await fetch(`${BACKEND_URL}/users/${session?.user?.id}`, {
       headers: {
         authorization: `Bearer ${session?.backendTokens?.accessToken}`,
       },

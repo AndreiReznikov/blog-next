@@ -17,7 +17,7 @@ export default function AddPostPage() {
 
   const addPost = async () => {
     try {
-      await fetch(`${BACKEND_URL}/post/create`, {
+      await fetch(`${BACKEND_URL}/posts/add`, {
         cache: 'no-cache',
         method: 'POST',
         headers: {

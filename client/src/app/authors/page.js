@@ -10,7 +10,7 @@ export default async function Authors() {
   let authors = [];
 
   try {
-    const res = await fetch(`${BACKEND_URL}/user`, {
+    const res = await fetch(`${BACKEND_URL}/users`, {
       cache: 'no-cache',
       headers: {
         authorization: `Bearer ${session?.backendTokens?.accessToken}`

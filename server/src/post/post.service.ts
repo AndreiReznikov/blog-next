@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { getCurrentDateString } from 'src/libs/Utils';
 import { PrismaService } from 'src/prisma.service';
 import { CreatePostDto, UpdatePostDto } from './dto/post.dto';
-import { getCurrentDateString } from 'src/libs/Utils';
 
 @Injectable()
 export class PostService {

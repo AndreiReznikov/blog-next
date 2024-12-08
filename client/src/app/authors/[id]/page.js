@@ -11,7 +11,7 @@ export default async function AuthorPage({ params }) {
   let author;
 
   try {
-    const res = await fetch(`${BACKEND_URL}/user/${params.id}`, {
+    const res = await fetch(`${BACKEND_URL}/users/${params.id}`, {
       headers: {
         authorization: `Bearer ${session?.backendTokens?.accessToken}`,
       },

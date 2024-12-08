@@ -13,7 +13,7 @@ export default function Post({ post }) {
   console.log(post);
   const deletePost = async (id) => {
     try {
-      await fetch(`${BACKEND_URL}/post/${id}`, {
+      await fetch(`${BACKEND_URL}/posts/${id}`, {
         cache: 'no-cache',
         method: 'DELETE',
         headers: {

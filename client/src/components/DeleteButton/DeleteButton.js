@@ -12,7 +12,7 @@ export default function DeleteButton({ id }) {
 
   const deletePost = useCallback(async () => {
     try {
-      await fetch(`${BACKEND_URL}/post/${id}`, {
+      await fetch(`${BACKEND_URL}/posts/${id}`, {
         cache: 'no-cache',
         method: 'DELETE',
         headers: {

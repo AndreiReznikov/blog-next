@@ -17,7 +17,7 @@ export default function EditPostPage({ params }) {
 
   const fetchPost = useCallback(async () => {
     try {
-      const res = await fetch(`${BACKEND_URL}/post/${params.id}`, {
+      const res = await fetch(`${BACKEND_URL}/posts/${params.id}`, {
         headers: {
           authorization: `Bearer ${session?.data?.backendTokens?.accessToken}`,
         },
@@ -42,7 +42,7 @@ export default function EditPostPage({ params }) {
   }, [fetchPost]);
 
   const editPost = useCallback(async () => {
-    await fetch(`${BACKEND_URL}/post/${params.id}`, {
+    await fetch(`${BACKEND_URL}/posts/${params.id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

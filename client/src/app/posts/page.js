@@ -11,7 +11,7 @@ export default async function PostsPage() {
   let posts = [];
 
   try {
-    const res = await fetch(`${BACKEND_URL}/post`, {
+    const res = await fetch(`${BACKEND_URL}/posts`, {
       headers: {
         authorization: `Bearer ${session?.backendTokens?.accessToken}`,
       },

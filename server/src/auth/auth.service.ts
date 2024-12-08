@@ -1,8 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { LoginDto } from './dto/auth.dto';
-import { UserService } from 'src/user/user.service';
-import { compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { compare } from 'bcrypt';
+import { UserService } from 'src/user/user.service';
+import { LoginDto } from './dto/auth.dto';
 
 const EXPIRE_TIME = 60 * 15 * 1000;
 
