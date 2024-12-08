@@ -52,7 +52,7 @@ export default function EditPostPage({ params }) {
         ...currentPost,
       })
     }).then(() => {
-      router.push('/posts');
+      router.push(`/posts/${params.id}`);
       setTimeout(() => router.refresh());
     });
   }, [session, currentPost]);

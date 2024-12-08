@@ -28,8 +28,13 @@ export default function AddPostPage() {
           ...postData.current,
           authorId: session?.data?.user?.id,
         })
-      }).then(() => {
-        router.push('/posts');
+      }).then(async (res) => {
+        const data = await res.json();
+        const postId = data?.id;
+
+        if (!postId) return;
+
+        router.push(`/posts/${postId}`);
         setTimeout(() => router.refresh());
       });
     } catch (error) {

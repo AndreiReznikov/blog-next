@@ -10,7 +10,7 @@ import styles from './post.module.css';
 export default function Post({ post }) {
   const session = useSession();
   const router = useRouter();
-  console.log(post);
+
   const deletePost = async (id) => {
     try {
       await fetch(`${BACKEND_URL}/posts/${id}`, {

@@ -8,11 +8,9 @@ export class PostService {
   constructor(private prisma: PrismaService) {}
 
   async create(dto: CreatePostDto) {
-    await this.prisma.post.create({
+    return await this.prisma.post.create({
       data: { ...dto, creationDate: getCurrentDateString() },
     });
-
-    return await this.findAll();
   }
 
   async update(id: number, dto: UpdatePostDto) {
