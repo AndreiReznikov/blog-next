@@ -6,7 +6,7 @@
 
 - client
 
-В .env файле указать NEXTAUTH_SECRET
+В .env файле указать *NEXTAUTH_SECRET*
 
 Выполнить команду:
 
@@ -16,7 +16,7 @@ npm run dev
 
 - server
 
-В .env файле указать JWT_SECRET_KEY, JWT_REFRESH_TOKEN и DATABASE_URL (указан в .env.example)
+В .env файле указать *JWT_SECRET_KEY*, *JWT_REFRESH_TOKEN* и *DATABASE_URL* (указан в .env.example)
 
 Выполнить команду:
 
