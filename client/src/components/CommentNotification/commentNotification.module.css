@@ -1,0 +1,16 @@
+.notifications-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.notification {
+  margin: 5px;
+  padding: 20px;
+  border: 1px solid white;
+  background-color: black;
+}

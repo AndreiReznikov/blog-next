@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import DeleteButton from '@/components/DeleteButton/DeleteButton';
+import CommentForm from '@/components/CommentForm/CommentForm';
 import { BACKEND_URL } from '@/lib/Constants';
 import styles from './page.module.css';
 
@@ -50,6 +51,7 @@ export default async function SinglePost({ params }) {
           </div>
           <p className={styles.description}>{post?.description}</p>
         </article>
+        <CommentForm articleId={post?.id} authorId={post?.authorId} authorName={post?.author?.name} />
       </div>
     </main>
   )
