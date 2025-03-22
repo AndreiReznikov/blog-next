@@ -4,16 +4,9 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { PostModule } from './post/post.module';
 import { PrismaService } from './prisma.service';
-import { NotificationsModule } from './notifications/notifications.module';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot(),
-    UserModule,
-    PostModule,
-    AuthModule,
-    NotificationsModule,
-  ],
+  imports: [ConfigModule.forRoot(), UserModule, PostModule, AuthModule],
   providers: [PrismaService],
 })
 export class AppModule {}

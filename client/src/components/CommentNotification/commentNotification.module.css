@@ -3,12 +3,13 @@
   inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
   pointer-events: none;
 }
 
 .notification {
+  max-width: 480px;
   margin: 5px;
   padding: 20px;
   border: 1px solid white;

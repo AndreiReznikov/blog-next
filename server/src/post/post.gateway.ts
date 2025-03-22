@@ -13,7 +13,7 @@ import { Server } from 'socket.io';
     credentials: true,
   },
 })
-export class NotificationsGateway {
+export class PostGateway {
   @WebSocketServer()
   server: Server;
 
@@ -27,7 +27,6 @@ export class NotificationsGateway {
       authorName: string;
     },
   ): void {
-    console.log(data);
     this.server.emit(`article-${data.articleId}`, {
       comment: data.comment,
       authorId: data.authorId,
