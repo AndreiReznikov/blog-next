@@ -13,7 +13,7 @@ import { Server } from 'socket.io';
     credentials: true,
   },
 })
-export class PostGateway {
+export class NotificationsGateway {
   @WebSocketServer()
   server: Server;
 
