@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { BACKEND_URL } from "@/lib/Constants";
 import io from 'socket.io-client';
 
+import styles from './CommentForm.module.css';
+
 const CommentForm = ({ articleId, authorId, authorName }) => {
   const [comment, setComment] = useState('');
 
@@ -15,9 +17,11 @@ const CommentForm = ({ articleId, authorId, authorName }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <textarea value={comment} onChange={(e) => setComment(e.target.value)} />
-      <button type="submit">Отправить комментарий</button>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <textarea className={styles.textarea} value={comment} onChange={(e) => setComment(e.target.value)} />
+      <div className={styles['button-container']}>
+        <button className={styles.button} type="submit">Add a comment</button>
+      </div>
     </form>
   );
 };

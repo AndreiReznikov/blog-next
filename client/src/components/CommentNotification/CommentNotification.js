@@ -32,7 +32,7 @@ const CommentNotification = ({ articleIds }) => {
     <div className={styles['notifications-container']}>
       {notifications.map((notification, index) => (
         <div className={styles['notification']} key={index}>
-          Новый комментарий к статье {notification?.articleId}: {truncate(notification?.comment, 100)} от автора {notification?.authorName}
+          New comment on the article {notification?.articleId}: {truncate(notification?.comment, 100)} from the author {notification?.authorName}
         </div>
       ))}
     </div>
