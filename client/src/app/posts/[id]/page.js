@@ -52,7 +52,7 @@ export default async function SinglePost({ params }) {
           <p className={styles.description}>{post?.description}</p>
         </article>
         <div className={styles['comment-form-wrapper']}>
-          <CommentForm articleId={post?.id} authorId={post?.authorId} authorName={session?.user?.name} />
+          <CommentForm postId={post?.id} authorId={session?.user?.id} />
         </div>
       </div>
     </main>

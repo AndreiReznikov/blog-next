@@ -29,7 +29,14 @@ export class PostService {
       where: {
         id: id,
       },
-      include: { author: true },
+      include: {
+        author: true,
+        Comment: {
+          include: {
+            author: true,
+          },
+        },
+      },
     });
   }
 
