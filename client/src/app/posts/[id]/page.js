@@ -51,6 +51,24 @@ export default async function SinglePost({ params }) {
           </div>
           <p className={styles.description}>{post?.description}</p>
         </article>
+        {post?.comments?.length > 0 &&
+          <div className={styles['comments-wrapper']}>
+            <h3 className={styles['comments-title']}>Comments:</h3>
+            {post?.comments?.map((comment) => (
+              <div className={styles.comment}>
+                <p className={styles['comment-text']}>{comment?.text}</p>
+                <div className={styles['comment-info']}>
+                  <span className={styles['comment-author']}>
+                    {comment?.author?.name}
+                  </span>
+                  <span className={styles['comment-date']}>
+                    {comment?.creationDate}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        }
         <div className={styles['comment-form-wrapper']}>
           <CommentForm postId={post?.id} authorId={session?.user?.id} />
         </div>

@@ -1,11 +1,16 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { BACKEND_URL } from '@/lib/Constants';
 
+import styles from './commentForm.module.css';
+
 const CommentForm = ({ postId, authorId }) => {
   const session = useSession();
+  const router = useRouter();
+
   const [comment, setComment] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
@@ -38,21 +43,26 @@ const CommentForm = ({ postId, authorId }) => {
       setError(err.message);
     } finally {
       setIsSubmitting(false);
+      setTimeout(() => router.refresh());
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <textarea
+        className={styles.textarea}
         value={comment}
         onChange={(e) => setComment(e.target.value)}
-        placeholder="Add a comment..."
+        placeholder="Add a comment... (maximum of 500 characters)"
+        maxLength={500}
         required
       />
-      <button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? 'Sending...' : 'Send'}
-      </button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <div className={styles['button-container']}>
+        <button className={styles.button} type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Sending...' : 'Send'}
+        </button>
+      </div>
+      {error && <p className={styles.error}>{error}</p>}
     </form>
   );
 };

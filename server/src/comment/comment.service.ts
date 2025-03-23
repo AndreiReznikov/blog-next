@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
-import { NotificationsGateway } from '../notifications/notifications.gateway';
+import { NotificationsGateway } from 'src/notifications/notifications.gateway';
+
+import { getCurrentDateString } from 'src/libs/Utils';
 
 @Injectable()
 export class CommentService {
@@ -31,7 +33,7 @@ export class CommentService {
     const comment = await this.prisma.comment.create({
       data: {
         text,
-        creationDate: new Date().toISOString(),
+        creationDate: getCurrentDateString(),
         author: { connect: { id: authorId } },
         post: { connect: { id: postId } },
       },
