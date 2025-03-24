@@ -11,7 +11,7 @@ export class CommentService {
     private notificationsGateway: NotificationsGateway,
   ) {}
 
-  async createComment(postId: number, authorId: number, text: string) {
+  async createComment({ postId, authorId, text }) {
     if (postId === undefined || authorId === undefined) {
       throw new Error('postId and authorId are required');
     }
@@ -19,6 +19,7 @@ export class CommentService {
     const postExists = await this.prisma.post.findUnique({
       where: { id: postId },
     });
+
     if (!postExists) {
       throw new Error('The post was not found');
     }
@@ -26,6 +27,7 @@ export class CommentService {
     const authorExists = await this.prisma.user.findUnique({
       where: { id: authorId },
     });
+
     if (!authorExists) {
       throw new Error('The author was not found');
     }
@@ -42,8 +44,40 @@ export class CommentService {
 
     this.notificationsGateway.sendNotification(postId, {
       comment: comment.text,
-      authorId: comment.authorId,
       authorName: comment.author.name,
+      type: 'ADD',
+    });
+
+    return comment;
+  }
+
+  async deleteComment({ postId, commentId, authorId }) {
+    if (authorId === undefined) {
+      throw new Error('authorId are required');
+    }
+
+    const commentExists = await this.prisma.comment.findUnique({
+      where: { id: commentId, authorId },
+    });
+
+    const author = await this.prisma.user.findUnique({
+      where: { id: authorId },
+    });
+
+    if (!commentExists) {
+      throw new Error('The comment was not found');
+    }
+
+    const comment = await this.prisma.comment.delete({
+      where: {
+        id: commentId,
+      },
+    });
+
+    this.notificationsGateway.sendNotification(postId, {
+      comment: comment.text,
+      authorName: author.name,
+      type: 'DELETE',
     });
 
     return comment;

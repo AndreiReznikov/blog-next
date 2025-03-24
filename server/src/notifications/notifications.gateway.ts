@@ -3,7 +3,7 @@ import { Server } from 'socket.io';
 
 @WebSocketGateway({
   cors: {
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:3000', // вынести
     methods: ['GET', 'POST'],
     credentials: true,
   },
@@ -14,7 +14,11 @@ export class NotificationsGateway {
 
   sendNotification(
     postId: number,
-    data: { comment: string; authorId: number; authorName: string },
+    data: {
+      comment?: string;
+      authorName?: string;
+      type?: string;
+    },
   ) {
     this.server.emit(`article-${postId}`, data);
   }
