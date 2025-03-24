@@ -89,4 +89,10 @@ export class CommentService {
       include: { author: true },
     });
   }
+
+  async getCommentById(id: number) {
+    return this.prisma.comment.findUnique({
+      where: { id },
+    });
+  }
 }

@@ -7,21 +7,21 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import { PostService } from 'src/post/post.service';
+import { CommentService } from 'src/comment/comment.service';
 import { UserService } from 'src/user/user.service';
 
 @Injectable()
-export class OwnerGuard implements CanActivate {
+export class CommentGuard implements CanActivate {
   constructor(
     private jwtService: JwtService,
     private readonly userService: UserService,
-    private readonly postsService: PostService,
+    private readonly commentService: CommentService,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const token = this.extractTokenFromHeader(request);
-    const postId = Number(request.params?.id);
+    const commentId = request?.body?.commentId;
 
     if (!token) throw new UnauthorizedException();
 
@@ -34,15 +34,15 @@ export class OwnerGuard implements CanActivate {
 
       if (!user) throw new UnauthorizedException('User not found');
 
-      const post = await this.postsService.findById(postId);
+      const comment = await this.commentService.getCommentById(commentId);
 
-      if (!post) {
-        throw new ForbiddenException('Post not found');
+      if (!comment) {
+        throw new ForbiddenException('Comment not found');
       }
 
-      if (post.authorId !== user.id) {
+      if (comment.authorId !== user.id) {
         throw new ForbiddenException(
-          'You do not have access to edit this post',
+          'You do not have access to edit this comment',
         );
       }
 

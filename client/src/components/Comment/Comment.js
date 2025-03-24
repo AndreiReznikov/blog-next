@@ -8,7 +8,7 @@ import styles from './comment.module.css';
 
 export default function Comment({ comment }) {
   const session = useSession();
-  const router  = useRouter();
+  const router = useRouter();
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -44,7 +44,9 @@ export default function Comment({ comment }) {
 
   return (
     <div key={comment?.id} className={styles.comment}>
-      {comment.authorId === session?.data?.user?.id && <span onClick={handleDelete} className={styles['comment-close-icon']} />}
+      {comment.authorId === session?.data?.user?.id &&
+        <span onClick={handleDelete} className={styles['comment-close-icon']} />
+      }
       <p className={styles['comment-text']}>{comment?.text}</p>
       <div className={styles['comment-info']}>
         <span className={styles['comment-author']}>

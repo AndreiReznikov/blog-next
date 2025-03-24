@@ -10,6 +10,7 @@ import {
 import { JwtGuard } from 'src/auth/guards/jwt.guard';
 import { CommentService } from './comment.service';
 import { CreateCommentDto, DeleteCommentDto } from './dto/comment.dto';
+import { CommentGuard } from 'src/auth/guards/comment.guard';
 
 @Controller('comment')
 export class CommentController {
@@ -21,7 +22,7 @@ export class CommentController {
     return this.commentService.createComment(dto);
   }
 
-  @UseGuards(JwtGuard)
+  @UseGuards(JwtGuard, CommentGuard)
   @Delete('delete')
   async deleteComment(@Body() dto: DeleteCommentDto) {
     return this.commentService.deleteComment(dto);
