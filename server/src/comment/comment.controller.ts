@@ -1,9 +1,17 @@
-import { Controller, Post, Get, Param, UseGuards, Body } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Get,
+  Param,
+  UseGuards,
+  Body,
+  Delete,
+} from '@nestjs/common';
 import { JwtGuard } from 'src/auth/guards/jwt.guard';
 import { CommentService } from './comment.service';
 import { CreateCommentDto, DeleteCommentDto } from './dto/comment.dto';
 
-@Controller('comments')
+@Controller('comment')
 export class CommentController {
   constructor(private commentService: CommentService) {}
 
@@ -14,7 +22,7 @@ export class CommentController {
   }
 
   @UseGuards(JwtGuard)
-  @Post('delete')
+  @Delete('delete')
   async deleteComment(@Body() dto: DeleteCommentDto) {
     return this.commentService.deleteComment(dto);
   }

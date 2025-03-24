@@ -5,6 +5,7 @@ import { BACKEND_URL, DEFAULT_TIMEOUT } from "@/lib/Constants";
 import { truncate } from '@/lib/Utils';
 import io from 'socket.io-client';
 
+import { getNotificationText } from './commentNotification.utils';
 import styles from './commentNotification.module.css';
 
 const CommentNotification = ({ articleIds }) => {
@@ -32,7 +33,7 @@ const CommentNotification = ({ articleIds }) => {
     <div className={styles['notifications-container']}>
       {notifications.map((notification, index) => (
         <div className={styles['notification']} key={index}>
-          New comment on the article {notification?.articleId}: {truncate(notification?.comment, 100)} from the author {notification?.authorName}
+          {getNotificationText(notification)}
         </div>
       ))}
     </div>

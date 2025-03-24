@@ -5,6 +5,7 @@ import DeleteButton from '@/components/DeleteButton/DeleteButton';
 import CommentForm from '@/components/CommentForm/CommentForm';
 import { BACKEND_URL } from '@/lib/Constants';
 import styles from './page.module.css';
+import Comment from '@/components/Comment/Comment';
 
 export default async function SinglePost({ params }) {
   const session = await getServerSession(authOptions);
@@ -55,17 +56,7 @@ export default async function SinglePost({ params }) {
           <div className={styles['comments-wrapper']}>
             <h3 className={styles['comments-title']}>Comments:</h3>
             {post?.comments?.map((comment) => (
-              <div className={styles.comment}>
-                <p className={styles['comment-text']}>{comment?.text}</p>
-                <div className={styles['comment-info']}>
-                  <span className={styles['comment-author']}>
-                    {comment?.author?.name}
-                  </span>
-                  <span className={styles['comment-date']}>
-                    {comment?.creationDate}
-                  </span>
-                </div>
-              </div>
+              <Comment comment={comment} />
             ))}
           </div>
         }

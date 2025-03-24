@@ -21,7 +21,7 @@ const CommentForm = ({ postId, authorId }) => {
     setError('');
 
     try {
-      const response = await fetch(`${BACKEND_URL}/comments/add`, {
+      const response = await fetch(`${BACKEND_URL}/comment/add`, {
         cache: 'no-cache',
         method: 'POST',
         headers: {
