@@ -7,7 +7,6 @@ class SocketService {
 
   constructor() {
     this.socket = io(BACKEND_URL);
-    this.setupConnection();
   }
 
   static getInstance() {
@@ -15,16 +14,6 @@ class SocketService {
       SocketService.instance = new SocketService();
     }
     return SocketService.instance;
-  }
-
-  setupConnection() {
-    this.socket.on('connect', () => {
-      console.log('Connected to WebSocket server');
-    });
-
-    this.socket.on('disconnect', () => {
-      console.log('Disconnected from WebSocket server');
-    });
   }
 }
 
