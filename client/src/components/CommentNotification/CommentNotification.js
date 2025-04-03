@@ -1,9 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { BACKEND_URL, DEFAULT_TIMEOUT } from "@/lib/Constants";
-import { truncate } from '@/lib/Utils';
-import io from 'socket.io-client';
+import { DEFAULT_TIMEOUT } from "@/lib/Constants";
+import { socketService } from '@/utils/socket';
 
 import { getNotificationText } from './commentNotification.utils';
 import styles from './commentNotification.module.css';
@@ -11,9 +10,9 @@ import styles from './commentNotification.module.css';
 const CommentNotification = ({ articleIds }) => {
   const [notifications, setNotifications] = useState([]);
 
-  useEffect(() => {
-    const socket = io(BACKEND_URL);
+  const { socket } = socketService;
 
+  useEffect(() => {
     articleIds?.forEach((articleId) => {
       socket.on(`article-${articleId}`, (data) => {
         setNotifications((prev) => [...prev, { ...data, articleId }]);
