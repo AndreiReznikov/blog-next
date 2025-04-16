@@ -7,10 +7,10 @@ import { socketService } from '@/utils/socket';
 import { getNotificationText } from './commentNotification.utils';
 import styles from './commentNotification.module.css';
 
+const { socket } = socketService;
+
 const CommentNotification = ({ articleIds }) => {
   const [notifications, setNotifications] = useState([]);
-
-  const { socket } = socketService;
 
   useEffect(() => {
     articleIds?.forEach((articleId) => {
@@ -24,7 +24,6 @@ const CommentNotification = ({ articleIds }) => {
       articleIds?.forEach((articleId) => {
         socket.off(`article-${articleId}`);
       });
-      socket.disconnect();
     };
   }, [articleIds]);
 

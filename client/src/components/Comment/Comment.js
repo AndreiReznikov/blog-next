@@ -16,8 +16,6 @@ export default function Comment({ comment }) {
     try {
       const { postId, authorId, id: commentId } = comment ?? {};
 
-      console.log(postId, authorId, commentId);
-
       const response = await fetch(`${BACKEND_URL}/comment/delete`, {
         cache: 'no-cache',
         method: 'Delete',
